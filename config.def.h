@@ -21,7 +21,6 @@ static const char *const autostart[] = {
         "dbus-sway-environment", NULL,
         "configure-gtk", NULL,
         "systemctl", "--user", "--import-environment", NULL,
-        "waybar", NULL,
         "dwl-post-start.sh", NULL,
         NULL /* terminate */
 };
@@ -33,12 +32,13 @@ static const char *const autostart[] = {
 static int log_level = WLR_ERROR;
 
 static const Rule rules[] = {
-	/* app_id       title       tags mask     isfloating   monitor */
+	/* app_id           title       tags mask     isfloating   monitor */
 	/* examples:
 	{ "Gimp",     NULL,       0,            1,           -1 },
 	*/
-	/*{ "firefox",    NULL,       1 << 1,     0,           -1 },*/
-	{ "flameshot",  NULL,       0,          1,           -1 },
+	{ "firefox",        NULL,       1 << 1,     0,           -1 },
+	{ "Slack",          NULL,       1 << 8,     0,           -1 },
+	{ "flameshot",      NULL,       0,          1,           -1 },
 };
 
 /* layout(s) */
@@ -65,7 +65,7 @@ static const struct xkb_rule_names xkb_rules = {
 	/* example:
 	.options = "ctrl:nocaps",
 	*/
-	.options = NULL,
+	.options = "compose:ralt",
 };
 
 static const int repeat_rate = 25;
@@ -135,13 +135,15 @@ static const char *downvol[]    = { "wpctl",   "set-volume", "@DEFAULT_AUDIO_SIN
 static const char *mutevol[]    = { "wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
 static const char *brightup[]   = { "light",   "-A",         "10",   NULL };
 static const char *brightdown[] = { "light",   "-U",         "10",   NULL };
+static const char *fnottdismiss[] = { "fnottctl", "dismiss", NULL };
+static const char *fnottdismissall[] = { "fnottctl", "dismiss", "all", NULL };
+static const char *lockcmd[] = { "lock.sh", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
-	{ MODKEY,                    XKB_KEY_b,          togglebar,      {0}},
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
@@ -163,6 +165,10 @@ static const Key keys[] = {
 	{ MODKEY,                    XKB_KEY_period,     focusmon,       {.i = WLR_DIRECTION_RIGHT} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_less,       tagmon,         {.i = WLR_DIRECTION_LEFT} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_greater,    tagmon,         {.i = WLR_DIRECTION_RIGHT} },
+  
+	{ MODKEY|WLR_MODIFIER_SHIFT,            XKB_KEY_l,          spawn,         {.v = lockcmd } },
+  { WLR_MODIFIER_CTRL,                    XKB_KEY_space,      spawn,         {.v = fnottdismiss } },
+  { WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, XKB_KEY_space,      spawn,         {.v = fnottdismissall } },
 
   { 0,                         XKB_KEY_XF86AudioLowerVolume,  spawn, {.v = downvol } },
 	{ 0,                         XKB_KEY_XF86AudioMute,         spawn, {.v = mutevol } },

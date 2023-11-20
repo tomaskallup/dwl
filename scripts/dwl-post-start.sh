@@ -6,3 +6,6 @@ swayidle -w \
   before-sleep 'lock.sh' &
 fnott &
 blueman-applet &
+waybar &
+slack &
+firefox &
