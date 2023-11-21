@@ -5,6 +5,9 @@ pkgs.mkShell {
     gnumake
     pkg-config
     wayland
+    xwayland
+    xorg.libxcb
+    xorg.xcbutilwm
     wayland-protocols
     wayland-scanner
     libinput

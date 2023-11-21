@@ -19,8 +19,6 @@ static const bool cursor_warp = true;
 /* Autostart */
 static const char *const autostart[] = {
         "dbus-sway-environment", NULL,
-        "configure-gtk", NULL,
-        "systemctl", "--user", "--import-environment", NULL,
         "dwl-post-start.sh", NULL,
         NULL /* terminate */
 };
@@ -36,7 +34,6 @@ static const Rule rules[] = {
 	/* examples:
 	{ "Gimp",     NULL,       0,            1,           -1 },
 	*/
-	{ "firefox",        NULL,       1 << 1,     0,           -1 },
 	{ "Slack",          NULL,       1 << 8,     0,           -1 },
 	{ "flameshot",      NULL,       0,          1,           -1 },
 };
@@ -135,6 +132,11 @@ static const char *downvol[]    = { "wpctl",   "set-volume", "@DEFAULT_AUDIO_SIN
 static const char *mutevol[]    = { "wpctl",   "set-mute",   "@DEFAULT_AUDIO_SINK@",      "toggle",   NULL };
 static const char *brightup[]   = { "light",   "-A",         "10",   NULL };
 static const char *brightdown[] = { "light",   "-U",         "10",   NULL };
+static const char *playpause[] =  { "playerctl", "play-pause",       NULL };
+static const char *playnext[] =  { "playerctl", "next",              NULL };
+static const char *playprev[] =  { "playerctl", "previous",          NULL };
+
+/* Other stuff */
 static const char *fnottdismiss[] = { "fnottctl", "dismiss", NULL };
 static const char *fnottdismissall[] = { "fnottctl", "dismiss", "all", NULL };
 static const char *lockcmd[] = { "lock.sh", NULL };
@@ -166,10 +168,13 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_less,       tagmon,         {.i = WLR_DIRECTION_LEFT} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_greater,    tagmon,         {.i = WLR_DIRECTION_RIGHT} },
   
-	{ MODKEY|WLR_MODIFIER_SHIFT,            XKB_KEY_l,          spawn,         {.v = lockcmd } },
+	{ MODKEY|WLR_MODIFIER_SHIFT,            XKB_KEY_L,          spawn,         {.v = lockcmd } },
   { WLR_MODIFIER_CTRL,                    XKB_KEY_space,      spawn,         {.v = fnottdismiss } },
   { WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, XKB_KEY_space,      spawn,         {.v = fnottdismissall } },
 
+	{ 0,                         XKB_KEY_XF86AudioNext,         spawn, {.v = playnext } },
+	{ 0,                         XKB_KEY_XF86AudioPrev,         spawn, {.v = playprev } },
+	{ 0,                         XKB_KEY_XF86AudioPlay,         spawn, {.v = playpause } },
   { 0,                         XKB_KEY_XF86AudioLowerVolume,  spawn, {.v = downvol } },
 	{ 0,                         XKB_KEY_XF86AudioMute,         spawn, {.v = mutevol } },
 	{ 0,                         XKB_KEY_XF86AudioRaiseVolume,  spawn, {.v = upvol   } },
