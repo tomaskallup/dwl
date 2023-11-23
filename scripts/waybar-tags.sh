@@ -55,7 +55,7 @@
 
 ############### USER: MODIFY THESE VARIABLES ###############
 readonly dwl_output_filename="$HOME"/.dwl_info                       # File to watch for dwl output
-readonly labels=( "1" "2" "3" "4" "5" "6" "𝟳" "𝟴" "9" )              # Number of lables must match dwl's config.h tagcount
+readonly labels=( "1" "2" "3" "4" "5" "6" "7" "8" "9" )              # Number of lables must match dwl's config.h tagcount
 max_title_length=70                                                  # Adjust according to available space in YOUR waybar - prevent right-side overflow
 pango_tag_default="<span                      foreground='#989710'>" # Pango span style for 'default' tags
 pango_tag_active="<span overline='single' overline_color='#fe8019'>" # Pango span style for 'active' tags
