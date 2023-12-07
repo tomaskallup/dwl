@@ -1,5 +1,5 @@
 [Desktop Entry]
 Name=dwl
 Comment=dwm for Wayland
-Exec=dwl
+Exec=dbus-run-session /usr/local/bin/dwl > ~/.dwl_info
 Type=Application

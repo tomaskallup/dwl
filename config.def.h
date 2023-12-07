@@ -19,7 +19,7 @@ static const bool cursor_warp = true;
 /* Autostart */
 static const char *const autostart[] = {
         "dbus-sway-environment", NULL,
-        "dwl-post-start.sh", NULL,
+        "/home/armeeh/Pkg/dwl/scripts/dwl-post-start.sh", NULL,
         NULL /* terminate */
 };
 
@@ -139,7 +139,8 @@ static const char *playprev[] =  { "playerctl", "previous",          NULL };
 /* Other stuff */
 static const char *fnottdismiss[] = { "fnottctl", "dismiss", NULL };
 static const char *fnottdismissall[] = { "fnottctl", "dismiss", "all", NULL };
-static const char *lockcmd[] = { "lock.sh", NULL };
+static const char *lockcmd[] = { "/home/armeeh/Pkg/dwl/scripts/lock.sh", NULL };
+static const char *flameshot[] = { "flameshot", "gui", NULL };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -180,6 +181,7 @@ static const Key keys[] = {
 	{ 0,                         XKB_KEY_XF86AudioRaiseVolume,  spawn, {.v = upvol   } },
   { 0,				                 XKB_KEY_XF86MonBrightnessUp,	  spawn, {.v = brightup} },
 	{ 0,				                 XKB_KEY_XF86MonBrightnessDown, spawn, {.v = brightdown} },
+	{ MODKEY,		                 XKB_KEY_Print,                 spawn, {.v = flameshot} },
 
 	TAGKEYS(          XKB_KEY_1, XKB_KEY_exclam,                     0),
 	TAGKEYS(          XKB_KEY_2, XKB_KEY_at,                         1),
