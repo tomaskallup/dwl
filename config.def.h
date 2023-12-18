@@ -149,8 +149,8 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
 	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
-	{ MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
-	{ MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_i,          incnmaster,     {.i = +1} },
+	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_d,          incnmaster,     {.i = -1} },
 	{ MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05} },
 	{ MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05} },
 	{ MODKEY,                    XKB_KEY_Return,     zoom,           {0} },
@@ -170,7 +170,6 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_greater,    tagmon,         {.i = WLR_DIRECTION_RIGHT} },
   
 	{ MODKEY|WLR_MODIFIER_SHIFT,            XKB_KEY_L,          spawn,         {.v = lockcmd } },
-  { WLR_MODIFIER_CTRL,                    XKB_KEY_space,      spawn,         {.v = fnottdismiss } },
   { WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, XKB_KEY_space,      spawn,         {.v = fnottdismissall } },
 
 	{ 0,                         XKB_KEY_XF86AudioNext,         spawn, {.v = playnext } },
