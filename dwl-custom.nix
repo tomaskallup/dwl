@@ -10,9 +10,10 @@
 , wayland-scanner
 , wayland
 , wayland-protocols
-, wlroots
+, wlroots_0_16
 , xcbutilwm
 , xwayland
+, gnumake
 }:
 
 stdenv.mkDerivation ({
@@ -24,7 +25,7 @@ stdenv.mkDerivation ({
   nativeBuildInputs = [
     installShellFiles
     pkg-config
-    wayland-scanner
+    gnumake
   ];
 
   buildInputs = [
@@ -34,10 +35,11 @@ stdenv.mkDerivation ({
     pixman
     wayland
     wayland-protocols
-    wlroots
+    wlroots_0_16
     libX11
     xcbutilwm
     xwayland
+    wayland-scanner
   ];
 
   outputs = [ "out" "man" ];
