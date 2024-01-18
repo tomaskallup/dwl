@@ -19,6 +19,7 @@ static const bool cursor_warp = true;
 /* Autostart */
 static const char *const autostart[] = {
         "dbus-sway-environment", NULL,
+        "configure-gtk", NULL,
         "/home/armeeh/Pkg/dwl/scripts/dwl-post-start.sh", NULL,
         NULL /* terminate */
 };
@@ -35,7 +36,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       0,            1,           -1 },
 	*/
 	{ "Slack",          NULL,       1 << 8,     0,           -1 },
-	{ "flameshot",      NULL,       0,          1,           -1 },
+	// { "flameshot",      NULL,       0,          1,           -1 },
 };
 
 /* layout(s) */
@@ -137,7 +138,6 @@ static const char *playnext[] =  { "playerctl", "next",              NULL };
 static const char *playprev[] =  { "playerctl", "previous",          NULL };
 
 /* Other stuff */
-static const char *fnottdismiss[] = { "fnottctl", "dismiss", NULL };
 static const char *fnottdismissall[] = { "fnottctl", "dismiss", "all", NULL };
 static const char *lockcmd[] = { "/home/armeeh/Pkg/dwl/scripts/lock.sh", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
