@@ -493,7 +493,7 @@ arrange(Monitor *m)
 
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
-  if (c) warpcursor_to_client(c);
+  // if (c) warpcursor_to_client(c);
 	motionnotify(0);
 	checkidleinhibitor(NULL);
 }

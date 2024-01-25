@@ -114,8 +114,10 @@ while [[ -n "$(pgrep waybar)" ]] ; do
     # Get info from the file
     dwl_latest_output_by_monitor="$(grep  "^${monitor}" "${dwl_output_filename}" | tail -n${dwl_log_lines_per_focus_change})"
     title="$(echo   "${dwl_latest_output_by_monitor}" | grep '^[[:graph:]]* title'  | cut -d ' ' -f 3- )"
-    title="${title//\"/“}" # Replace quotation - prevent waybar crash
-    title="${title//\&/+}" # Replace ampersand - prevent waybar crash
+    title=${title//\&/\&amp;} # Replace ampersand - prevent waybar crash
+    title=${title//\</\&lt;} # Replace < - prevent waybar crash
+    title=${title//\>/\&gt;} # Replace > - prevent waybar crash
+    title=${title//'"'/\&quot;} # Replace quotation - prevent waybar crash
     title="${title::$max_title_length}" # Prevent waybar right-side overflow
     layout="$(echo  "${dwl_latest_output_by_monitor}" | grep '^[[:graph:]]* layout' | cut -d ' ' -f 3- )"
     selmon="$(echo  "${dwl_latest_output_by_monitor}" | grep 'selmon' | cut -d ' ' -f 3)"
