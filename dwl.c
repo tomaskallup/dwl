@@ -493,7 +493,7 @@ arrange(Monitor *m)
 
 	if (m->lt[m->sellt]->arrange)
 		m->lt[m->sellt]->arrange(m);
-  // if (c) warpcursor_to_client(c);
+  if (c) warpcursor_to_client(c);
 	motionnotify(0);
 	checkidleinhibitor(NULL);
 }
@@ -1245,16 +1245,16 @@ focusclient(Client *c, int lift)
 	if (locked)
 		return;
 
-	/* Warp cursor to center of client if it is outside */
-	if (cursor_warp && c)
-		warpcursor_to_client(c);
-
 	/* Raise client in stacking order if requested */
 	if (c && lift)
 		wlr_scene_node_raise_to_top(&c->scene->node);
 
 	if (c && client_surface(c) == old)
 		return;
+
+	/* Warp cursor to center of client if it is outside */
+	if (cursor_warp && c)
+		warpcursor_to_client(c);
 
 	if ((old_client_type = toplevel_from_wlr_surface(old, &old_c, &old_l)) == XDGShell) {
 		struct wlr_xdg_popup *popup, *tmp;
@@ -1322,7 +1322,8 @@ focusmon(const Arg *arg)
 			selmon = dirtomon(arg->i);
 		while (!selmon->wlr_output->enabled && i++ < nmons);
 	focusclient(focustop(selmon), 1);
-  warpcursor_to_mon(selmon);
+  if (cursor_warp)
+    warpcursor_to_mon(selmon);
 }
 
 void

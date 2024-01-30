@@ -51,6 +51,11 @@ stdenv.mkDerivation ({
     "MANDIR=$(man)/share/man"
   ];
 
+  buildPhase = ''
+    make clean
+    make
+  '';
+
   meta = {
     homepage = "https://github.com/tomaskallup/dwl/";
     description = "Dynamic window manager for Wayland";
