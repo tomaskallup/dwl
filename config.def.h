@@ -140,7 +140,8 @@ static const char *playprev[] =  { "playerctl", "previous",          NULL };
 /* Other stuff */
 static const char *fnottdismissall[] = { "fnottctl", "dismiss", "all", NULL };
 static const char *lockcmd[] = { "lock.sh", NULL };
-static const char *screenshot[] = { "screenshot.sh"};
+static const char *screenshot[] = { "screenshot.sh" };
+static const char *screenshotselect[] = { "screenshot.sh", "select" };
 
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
@@ -181,6 +182,7 @@ static const Key keys[] = {
   { 0,				                 XKB_KEY_XF86MonBrightnessUp,	  spawn, {.v = brightup} },
 	{ 0,				                 XKB_KEY_XF86MonBrightnessDown, spawn, {.v = brightdown} },
 	{ MODKEY,		                 XKB_KEY_Print,                 spawn, {.v = screenshot} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Print,                 spawn, {.v = screenshotselect} },
 
 	TAGKEYS(          XKB_KEY_1, XKB_KEY_exclam,                     0),
 	TAGKEYS(          XKB_KEY_2, XKB_KEY_at,                         1),
